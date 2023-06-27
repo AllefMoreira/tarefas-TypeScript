@@ -1,6 +1,5 @@
 import { Trash } from "phosphor-react";
 import styles from './Task.module.css'
-import { ChangeEvent, useState, useEffect } from "react";
 
 interface taskProps{
     content: string;
@@ -9,31 +8,24 @@ interface taskProps{
 
 export function Task( {content, retornaCount}:taskProps ){
 
-    const [countTask, setCountTask] = useState(0)
+    function tasksConcludes(){
+        var contAux = 0
+        var checkCount = document.getElementsByTagName('input')
 
-    useEffect( () =>{
-        retornaCount(countTask)
-        console.log('func')
-    }, [InputEvent])
-
-    function tasksConcludes(event:ChangeEvent<HTMLInputElement>){
-
-        if(event.target.checked == true){
-            setCountTask((state) =>{
-                return state + 1
-            })
-        } else {
-            setCountTask((state) =>{
-                return state - 1
-            })
+        for(let i = 0; i < checkCount.length; i++){
+            if(checkCount[i].checked){
+                contAux = contAux + 1
+            }
         }
+
+        retornaCount(contAux)
     }
 
     return(
         <div className={styles.task}>
             <div className={styles.taskCheckAndInfo}> 
-                <label className={styles.container}>
-                    <input id = {content} type="checkbox" onChange={tasksConcludes} />
+                <label  className={styles.container}>
+                    <input id = {content} type="checkbox" onChange={tasksConcludes}/>
                     <span className={styles.check}></span>
                     {content}
                 </label>
