@@ -8,7 +8,7 @@ interface addTaskProps{
 
 export function AddTask( {retornaTask}: addTaskProps ){
 
-    const [tasks, setTasks] = useState<string[]>([])
+    const [tasks, setTasks] = useState([''])
 
     console.log(tasks)
 

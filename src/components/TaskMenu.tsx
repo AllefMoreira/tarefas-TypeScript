@@ -10,19 +10,25 @@ interface taskMenuProps{
 export function TaskMenu( {content}: taskMenuProps ){ 
 
     const [count, setCount] = useState(0)
+    console.log(content.length)
 
     function retornaCount(countReturn:number){
         setCount(countReturn)
     }
 
+    content = content.filter(contents =>{
+        return contents != ''
+    })
+
+
     return(
         <div className={styles.taskContainer}>
             <div className={styles.taskHeader} >
-                <p className={styles.taskTotal}>Tarefas criadas <span> {content.length} </span></p>
+                <p className={styles.taskTotal}>Tarefas criadas <span> { content.length } </span></p>
                 <p className={styles.taskConcluded}>Concluídas <span> {count} de {content.length} </span></p>
             </div>
             {
-                (content.length > 0)?
+                (content.length > 0 )?
                 <div className={styles.taskCommentsOn}>
                     {
                         content.map(contents =>{
